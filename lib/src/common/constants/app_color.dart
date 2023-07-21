@@ -8,4 +8,6 @@ abstract class AppColor{
   static const activeDotColor = Color(0xFFFF8473);
   static const dotColor = Color(0xFFFFC0B8);
   static const textFieldBKG = Color(0xFFF4F4F4);
+  static const splashPageText = Color(0xFFCFE7CB);
+
 }
