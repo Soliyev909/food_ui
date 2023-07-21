@@ -30,7 +30,7 @@ flutter:
 
 
   fonts:
-     - family: Schyler
+     - family: Signika
        fonts:
          - asset: assets/fonts/SignikaNegative-Bold.ttf
            weight: 700
