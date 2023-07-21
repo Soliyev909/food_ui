@@ -5,7 +5,7 @@ publish_to: 'none'
 version: 1.0.0+1
 
 environment:
-  sdk: '>=3.0.6 <4.0.0'
+  sdk: '>=3.0.5 <4.0.0'
 
 dependencies:
   flutter:
@@ -29,11 +29,19 @@ flutter:
 
 
 
-  # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
+  fonts:
+     - family: Schyler
+       fonts:
+         - asset: assets/fonts/SignikaNegative-Bold.ttf
+           weight: 700
+         - asset: assets/fonts/SignikaNegative-Light.ttf
+           weight: 300
+         - asset: assets/fonts/SignikaNegative-Medium.ttf
+           weight: 500
+         - asset: assets/fonts/SignikaNegative-Regular.ttf
+           weight: 400
+         - asset: assets/fonts/SignikaNegative-SemiBold.ttf
+           weight: 600
   #         style: italic
   #   - family: Trajan Pro
   #     fonts:
