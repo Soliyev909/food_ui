@@ -1,4 +1,4 @@
-abstract class AppImages{
+abstract class AppIcons{
   static const ic_camera = "assets/images/icons/ic_camera.png";
   static const ic_crown = "assets/images/icons/ic_crown.png";
   static const ic_curve = "assets/images/icons/ic_curve.png";
