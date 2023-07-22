@@ -5,7 +5,6 @@ import 'package:food_ui/src/feature/food_app/widget/custom_richtext.dart';
 import '../../../common/constants/app_color.dart';
 import '../../../common/constants/app_pictures.dart';
 
-
 import '../widget/custom_button.dart';
 import '../widget/custom_carousel.dart';
 import '../widget/custom_richtext.dart';
@@ -13,8 +12,6 @@ import '../widget/intro_page_text.dart';
 import '../widget/logo_widget.dart';
 
 import 'login_page.dart';
-
-
 
 class IntroPage extends StatefulWidget {
   const IntroPage({super.key});
@@ -54,11 +51,11 @@ class _IntroPageState extends State<IntroPage> {
   // );
   //
   void openLoginPage() => Navigator.push(
-    context,
-    MaterialPageRoute(
-      builder: (context) => const LoginPage(),
-    ),
-  );
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LoginPage(),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -76,7 +73,14 @@ class _IntroPageState extends State<IntroPage> {
             ),
             CustomButton(
               text: "Get Started",
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomePage(),
+                  ),
+                );
+              },
               // onPressed: openRegistrationPage,
             ),
             CustomRichText(
