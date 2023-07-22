@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_ui/src/feature/food_app/screens/home_page.dart';
 import 'package:food_ui/src/feature/food_app/widget/custom_richtext.dart';
 
 import '../../../common/constants/app_color.dart';
@@ -68,13 +69,20 @@ class _IntroPageState extends State<IntroPage> {
             ),
             CustomButton(
               text: "Get Started",
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => const HomePage(),
+                  ),
+                );
+              },
               // onPressed: openRegistrationPage,
             ),
             CustomRichText(
-              mainText: "Already Have An Acount? ",
+              mainText: "Already Have An Account? ",
               text: "Log In",
-              onTap: (){},
+              onTap: () {},
               // onTap: openLoginPage,
             ),
           ],
