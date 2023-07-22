@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
-import 'package:carousel_slider/carousel_options.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 import '../../../common/constants/app_color.dart';
@@ -21,7 +20,7 @@ class CustomCarousel extends StatefulWidget {
 }
 
 class _CustomCarouselState extends State<CustomCarousel> {
-  int activeIndex = 0;
+  ValueNotifier<int> activeIndex = ValueNotifier(0);
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +39,9 @@ class _CustomCarouselState extends State<CustomCarousel> {
             );
           },
           options: CarouselOptions(
-            onPageChanged: (index, reason) => setState(
-                  () => activeIndex = index,
-            ),
+            onPageChanged: (index, reason) {
+              activeIndex.value = index;
+            },
             viewportFraction: 1,
             height: 390,
             autoPlay: true,
@@ -55,14 +54,11 @@ class _CustomCarouselState extends State<CustomCarousel> {
   }
 
   Widget buildImage(String urlImage, int index) {
-    return Container(
-      // margin: const EdgeInsets.symmetric(horizontal: 15),
-      child: Image.asset(
-        height: 282,
-        width: 282,
-        urlImage,
-        fit: BoxFit.cover,
-      ),
+    return Image.asset(
+      height: 282,
+      width: 282,
+      urlImage,
+      fit: BoxFit.cover,
     );
   }
 
@@ -73,14 +69,19 @@ class _CustomCarouselState extends State<CustomCarousel> {
     );
   }
 
-  Widget buildIndicator() => AnimatedSmoothIndicator(
-    activeIndex: activeIndex,
-    count: widget.urlImages.length,
-    effect: const ExpandingDotsEffect(
-      dotWidth: 12,
-      dotHeight: 10,
-      activeDotColor: AppColor.activeDotColor,
-      dotColor: AppColor.dotColor,
-    ),
-  );
+  Widget buildIndicator() => ValueListenableBuilder(
+        valueListenable: activeIndex,
+        builder: (context, value, _) {
+          return AnimatedSmoothIndicator(
+            activeIndex: value,
+            count: widget.urlImages.length,
+            effect: const ExpandingDotsEffect(
+              dotWidth: 12,
+              dotHeight: 10,
+              activeDotColor: AppColor.activeDotColor,
+              dotColor: AppColor.dotColor,
+            ),
+          );
+        },
+      );
 }
