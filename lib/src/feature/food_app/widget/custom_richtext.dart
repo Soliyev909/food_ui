@@ -18,7 +18,7 @@ class CustomRichText extends StatelessWidget {
   Widget build(BuildContext context) {
     return RichText(
       text: TextSpan(
-        style: TextStyle(
+        style: const TextStyle(
           color: AppColor.grey,
           fontSize: 17,
           fontWeight: FontWeight.w500,
@@ -28,7 +28,7 @@ class CustomRichText extends StatelessWidget {
           TextSpan(
             recognizer: TapGestureRecognizer()..onTap = onTap,
             text: text,
-            style: TextStyle(color: AppColor.mainColor),
+            style: const TextStyle(color: AppColor.mainColor),
           ),
         ],
       ),

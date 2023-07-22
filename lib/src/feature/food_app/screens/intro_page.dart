@@ -61,7 +61,7 @@ class _IntroPageState extends State<IntroPage> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            LogoWidget(),
+            const LogoWidget(),
             CustomCarousel(
               customTexts: customTexts,
               urlImages: urlImages,
