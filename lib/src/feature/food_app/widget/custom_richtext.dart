@@ -20,7 +20,7 @@ class CustomRichText extends StatelessWidget {
       text: TextSpan(
         style: const TextStyle(
           color: AppColor.grey,
-          fontSize: 17,
+          fontSize: 16,
           fontWeight: FontWeight.w500,
         ),
         children: [
