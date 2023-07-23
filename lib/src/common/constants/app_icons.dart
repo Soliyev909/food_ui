@@ -20,4 +20,5 @@ abstract class AppIcons{
   static const icStar = "assets/images/icons/ic_star.png";
   static const icUser = "assets/images/icons/ic_user.png";
   static const icUserBold = "assets/images/icons/ic_user_bold.png";
+  static const isListTileicon = "assets/images/icons/Arrow - Right 2.png";
 }

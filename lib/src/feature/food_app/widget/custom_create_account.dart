@@ -79,7 +79,7 @@ class _CustomCreatePageState extends State<CustomCreatePage> {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) =>  const CustomPageController(),
+            builder: (context) => const CustomPageController(),
           ));
     }
   }
@@ -88,116 +88,107 @@ class _CustomCreatePageState extends State<CustomCreatePage> {
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
-      child: Column(
-        children: [
-          SizedBox(
-            height: widget.constraints.maxHeight * .6,
-            child: Column(
+      child: SizedBox(
+        height: widget.constraints.maxHeight,
+        width: widget.constraints.maxWidth,
+        child: Column(
+          children: [
+            SizedBox(height: widget.constraints.maxHeight * .04),
+            const LogoWidget(),
+            SizedBox(height: widget.constraints.maxHeight * .01),
+            Padding(
+              padding: const EdgeInsets.only(left: 25, right: 25),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const CustomText(
+                      text1: "Sign Up", text2: "Welcome to Kcal!"),
+                  SizedBox(
+                    height: widget.constraints.maxHeight * .04,
+                  ),
+                  CustomTextFormField(
+                    validator: validateName,
+                    hinText: "Full Name",
+                    icon: Icons.person,
+                  ),
+                  SizedBox(height: widget.constraints.maxHeight * 0.02),
+                  CustomTextFormField(
+                    validator: validateEmail,
+                    hinText: "Email address",
+                    icon: Icons.email,
+                  ),
+                  SizedBox(height: widget.constraints.maxHeight * 0.02),
+                  CustomTextFormField(
+                    validator: validatePassword,
+                    hinText: "Password",
+                    icon: Icons.lock,
+                    res: true,
+                  ),
+                ],
+              ),
+            ),
+            Spacer(flex: 6,),
+            const Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                SizedBox(height: widget.constraints.maxHeight * .05,),
-                const LogoWidget(),
-                SizedBox(
-                    height: widget.constraints.maxHeight * .01
+                Expanded(
+                  flex: 3,
+                  child: Divider(
+                    color: AppColor.grey,
+                    height: 1,
+                    indent: 20,
+                  ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 25, right: 25),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const CustomText(
-                          text1: "Sign Up", text2: "Welcome to Kcal!"),
-                      SizedBox(
-                        height: widget.constraints.maxHeight * .04,
+                Expanded(
+                  child: Center(
+                    child: Text(
+                      "or",
+                      style: TextStyle(
+                        color: AppColor.grey,
                       ),
-                      CustomTextFormField(
-                        validator: validateName,
-                        hinText: "Full Name",
-                        icon: Icons.person,
-                      ),
-                      SizedBox(height: widget.constraints.maxHeight * 0.02),
-                      CustomTextFormField(
-                        validator: validateEmail,
-                        hinText: "Email address",
-                        icon: Icons.email,
-                      ),
-                      SizedBox(height: widget.constraints.maxHeight * 0.02),
-                      CustomTextFormField(
-                        validator: validatePassword,
-                        hinText: "Password",
-                        icon: Icons.lock,
-                        res: true,
-                      ),
-                    ],
+                    ),
+                  ),
+                ),
+                Expanded(
+                  flex: 3,
+                  child: Divider(
+                    height: 1,
+                    endIndent: 20,
+                    color: AppColor.grey,
                   ),
                 ),
               ],
             ),
-          ),
-          SizedBox(
-            height: widget.constraints.maxHeight * .4,
-            width: double.infinity,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            SizedBox(height: widget.constraints.maxHeight * .025),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    Expanded(
-                      flex: 3,
-                      child: Divider(
-                        color: AppColor.grey,
-                        height: 1,
-                        indent: 20,
-                      ),
-                    ),
-                    Expanded(
-                      child: Center(
-                        child: Text(
-                          "or",
-                          style: TextStyle(
-                            color: AppColor.grey,
-                          ),
-                        ),
-                      ),
-                    ),
-                    Expanded(
-                      flex: 3,
-                      child: Divider(
-                        height: 1,
-                        endIndent: 20,
-                        color: AppColor.grey,
-                      ),
-                    ),
-                  ],
+                CustomRegisterButton(
+                  constraints: widget.constraints,
+                  iconPath: "assets/images/picture/apple.png",
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CustomRegisterButton(
-                      constraints: widget.constraints,
-                      iconPath: "assets/images/picture/apple.png",
-                    ),
-                    SizedBox(width: MediaQuery.of(context).size.width * .04),
-                    CustomRegisterButton(
-                      constraints: widget.constraints,
-                      iconPath: "assets/images/picture/email.png",
-                    ),
-                  ],
-                ),
-                CustomButton(
-                  text: "Sign Up",
-                  onPressed: onPressed,
-                ),
-                CustomRichText(
-                  onTap: openLoginPage,
-                  text: "Log In",
-                  mainText: "Already Have An Acount? ",
+                SizedBox(width: MediaQuery.of(context).size.width * .04),
+                CustomRegisterButton(
+                  constraints: widget.constraints,
+                  iconPath: "assets/images/picture/email.png",
                 ),
               ],
             ),
-          )
-        ],
+            SizedBox(height: widget.constraints.maxHeight * .025),
+            CustomButton(
+              text: "Sign Up",
+              onPressed: onPressed,
+            ),
+            SizedBox(height: widget.constraints.maxHeight * .025),
+            CustomRichText(
+              onTap: openLoginPage,
+              text: "Log In",
+              mainText: "Already Have An Acount? ",
+            ),
+            SizedBox(height: widget.constraints.maxHeight * .025),
+          ],
+        ),
       ),
     );
   }

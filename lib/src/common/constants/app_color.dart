@@ -15,6 +15,6 @@ abstract class AppColor{
   static const cardColor = Color(0xFFFFF2F0);
   static const cardTextColor = Color(0xFF330600);
   static const stackColor = Color(0xFFA3A0CA);
-
-
+  static const textColor = Color(0xFFA1A1A1);
+  static const listTilecolor = Color(0xFFFFF8EE);
 }
