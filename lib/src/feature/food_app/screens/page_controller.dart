@@ -22,20 +22,29 @@ class _CustomPageControllerState extends State<CustomPageController> {
   late final PageController controller;
   @override
   void initState() {
-   super.initState();
-   controller = PageController();
+    super.initState();
+    controller = PageController();
   }
+
   @override
   void dispose() {
     controller.dispose();
     super.dispose();
   }
+
   void pageChange(int value) {
     controller.jumpToPage(value);
     setState(() {
       pageNumber = value;
     });
   }
+
+  void openCamera() => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const CameraPage(),
+        ),
+      );
 
   @override
   Widget build(BuildContext context) {
@@ -56,28 +65,31 @@ class _CustomPageControllerState extends State<CustomPageController> {
         type: BottomNavigationBarType.fixed,
         onTap: pageChange,
         currentIndex: pageNumber,
-        items: const [
-         BottomNavigationBarItem(
-           icon: CustomButtonImages(image: AppIcons.icHome),
-           label: "",
-           activeIcon: CustomButtonImages(image: AppIcons.icHomeBold),
-         ),
-          BottomNavigationBarItem(
+        items: [
+          const BottomNavigationBarItem(
+            icon: CustomButtonImages(image: AppIcons.icHome),
+            label: "",
+            activeIcon: CustomButtonImages(image: AppIcons.icHomeBold),
+          ),
+          const BottomNavigationBarItem(
             icon: CustomButtonImages(image: AppIcons.icSearch),
             label: "",
             activeIcon: CustomButtonImages(image: AppIcons.icSearchBold),
           ),
           BottomNavigationBarItem(
-            icon: CustomButtonCamera(image: AppIcons.icScan),
+            icon: CustomButtonCamera(image: AppIcons.icScan, onTap: openCamera),
             label: "",
-            activeIcon: CustomButtonCamera(image: AppIcons.icCamera),
+            activeIcon: CustomButtonCamera(
+              image: AppIcons.icCamera,
+              onTap: openCamera,
+            ),
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: CustomButtonImages(image: AppIcons.icFavorite),
             label: "",
             activeIcon: CustomButtonImages(image: AppIcons.icFavoriteBold),
           ),
-          BottomNavigationBarItem(
+          const BottomNavigationBarItem(
             icon: CustomButtonImages(image: AppIcons.icProfile),
             label: "",
             activeIcon: CustomButtonImages(image: AppIcons.icProfile),
