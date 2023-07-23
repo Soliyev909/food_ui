@@ -20,4 +20,5 @@ abstract class AppPictures{
   static const imgSubtract = "assets/images/picture/img_subtract.png";
   static const imgTomato = "assets/images/picture/img_tomato.png";
   static const imgVegetable = "assets/images/picture/img_vegetable.png";
+  static const imgGreenSalad = "assets/images/picture/img_green_salad.png";
 }

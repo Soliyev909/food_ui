@@ -10,7 +10,6 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
-      darkTheme: ThemeData.dark(),
       title: "Food UI",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

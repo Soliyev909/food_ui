@@ -7,7 +7,7 @@ import 'camera_page.dart';
 import 'home_page.dart';
 import 'likes_page.dart';
 import 'profile_page.dart';
-import 'search_page.dart';
+import 'search_page/search_page.dart';
 
 class CustomPageController extends StatefulWidget {
   const CustomPageController({Key? key}) : super(key: key);

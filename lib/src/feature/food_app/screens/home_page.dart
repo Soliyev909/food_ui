@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:food_ui/src/common/constants/app_icons.dart';
 
@@ -260,7 +259,7 @@ class HomePage extends StatelessWidget {
                                   height: 48,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top:8.0),
+                                  padding: EdgeInsets.only(top: 8.0),
                                   child: Text(
                                     "Fruits",
                                     style: TextStyle(
@@ -297,7 +296,7 @@ class HomePage extends StatelessWidget {
                                   height: 48,
                                 ),
                                 Padding(
-                                  padding: EdgeInsets.only(top:8.0),
+                                  padding: EdgeInsets.only(top: 8.0),
                                   child: Text(
                                     "Vegetables",
                                     style: TextStyle(

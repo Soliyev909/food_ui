@@ -52,7 +52,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                   Radius.circular(20),
                 ),
               ),
-              helperStyle: TextStyle(
+              helperStyle: const TextStyle(
                 fontSize: 16,
                 color: AppColor.activeDotColor,
               ),

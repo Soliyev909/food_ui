@@ -10,6 +10,8 @@ abstract class AppColor{
   static const dotColor = Color(0xFFFFC0B8);
   static const textFieldBKG = Color(0xFFF4F4F4);
   static const splashPageText = Color(0xFFCFE7CB);
+  static const textFieldHintColor = Color(0xFF999999);
+  static const searchPageCardColor = Color(0xFFFCFCFC);
   static const cardColor = Color(0xFFFFF2F0);
   static const cardTextColor = Color(0xFF330600);
   static const stackColor = Color(0xFFA3A0CA);
