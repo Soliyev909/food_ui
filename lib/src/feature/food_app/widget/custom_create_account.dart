@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 import '../../../common/constants/app_color.dart';
-import '../screens/home_page.dart';
 import '../screens/login_page.dart';
+import '../screens/page_controller.dart';
 import 'custom_button.dart';
 import 'custom_richtext.dart';
 import 'custom_text.dart';
@@ -79,7 +79,7 @@ class _CustomCreatePageState extends State<CustomCreatePage> {
       Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => const HomePage(),
+            builder: (context) =>  CustomPageController(),
           ));
     }
   }

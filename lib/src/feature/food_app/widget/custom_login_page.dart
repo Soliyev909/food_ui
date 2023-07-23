@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import '../screens/page_controller.dart';
 import '../screens/registration_page.dart';
 import 'custom_button.dart';
 import 'custom_richtext.dart';
@@ -20,19 +20,26 @@ class CustomLoginPage extends StatefulWidget {
 }
 
 class _CustomLoginPageState extends State<CustomLoginPage> {
-
-
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-
   void openHomePage() {
-    if(formKey.currentState!.validate()){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage(),));
+    if (formKey.currentState!.validate()) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const CustomPageController(),
+        ),
+      );
     }
   }
 
-  void openRegisterPage(){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const RegisterPage(),));
+  void openRegisterPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const RegisterPage(),
+      ),
+    );
   }
 
   String? validatePassword(String? value) {
@@ -54,7 +61,6 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
     return null;
   }
 
-
   String? validateEmail(String? value) {
     if (value != null &&
         !RegExp(r"^[a-zA-Z][a-zA-Z0-9]*@[a-zA-Z0-9]+\.[a-zA-Z]{2,6}$")
@@ -75,21 +81,28 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
             flex: 3,
             child: Column(
               children: [
-                SizedBox(height: widget.constraints.maxHeight * .05,),
+                SizedBox(
+                  height: widget.constraints.maxHeight * .05,
+                ),
                 const LogoWidget(),
-                SizedBox(height: widget.constraints.maxHeight * .04,),
+                SizedBox(
+                  height: widget.constraints.maxHeight * .04,
+                ),
                 Padding(
                   padding: const EdgeInsets.only(left: 25, right: 25),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const CustomText(text1: "Sign In", text2: "Welcome to back!"),
-                      SizedBox(height: widget.constraints.maxHeight * .05,),
+                      const CustomText(
+                          text1: "Sign In", text2: "Welcome to back!"),
+                      SizedBox(
+                        height: widget.constraints.maxHeight * .05,
+                      ),
                       CustomTextFormField(
-                          validator: validateEmail,
-                          hinText: "Email address",
-                          icon: Icons.email,
+                        validator: validateEmail,
+                        hinText: "Email address",
+                        icon: Icons.email,
                       ),
                       SizedBox(height: widget.constraints.maxHeight * 0.02),
                       CustomTextFormField(
@@ -112,7 +125,7 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
                 children: [
                   // SizedBox(height: widget.constraints.maxHeight * .1,),
                   CustomButton(
-                    text: "Login",
+                    text: "Sign In",
                     onPressed: openHomePage,
                   ),
                   CustomRichText(
