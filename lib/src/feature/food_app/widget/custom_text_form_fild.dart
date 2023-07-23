@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../../../common/constants/app_color.dart';
+
 class CustomTextFormField extends StatefulWidget {
   final String hinText;
   final IconData icon;
@@ -39,30 +41,45 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
   @override
   Widget build(BuildContext context) {
     return ValueListenableBuilder(
-      valueListenable: isObscure,
-      builder: (context,value, _) {
-        return TextFormField(
-
-          validator: widget.validator,
-          obscureText: value,
-          decoration: InputDecoration(
-            border: const OutlineInputBorder(
-              borderRadius: BorderRadius.all(
-                Radius.circular(20),
+        valueListenable: isObscure,
+        builder: (context, value, _) {
+          return TextFormField(
+            validator: widget.validator,
+            obscureText: value,
+            decoration: InputDecoration(
+              border: const OutlineInputBorder(
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20),
+                ),
               ),
+              helperStyle: TextStyle(
+                fontSize: 16,
+                color: AppColor.activeDotColor,
+              ),
+              prefixIcon: Icon(widget.icon),
+              hintText: widget.hinText,
+              counter: res
+                  ? InkWell(
+                      onTap: onTap,
+                      child: (value
+                          ? const Text(
+                              "Show password",
+                              style: TextStyle(
+                                color: AppColor.mainColor,
+                                fontSize: 16,
+                              ),
+                            )
+                          : const Text(
+                              "Hide password",
+                              style: TextStyle(color: AppColor.mainColor,
+                              fontSize: 16,
+                              ),
+                            )),
+                    )
+                  : null,
+              helperText: helperText ? "Forgot password?" : null,
             ),
-            prefixIcon: Icon(widget.icon),
-            hintText: widget.hinText,
-            counter: res
-                ? InkWell(
-                    onTap: onTap,
-                    child: (value ? const Text("showpassword") : const Text("hid epaswword")),
-                  )
-                : null,
-            helperText: helperText ? "Forgot password" : null,
-          ),
-        );
-      }
-    );
+          );
+        });
   }
 }

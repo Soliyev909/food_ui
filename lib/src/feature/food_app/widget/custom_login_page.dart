@@ -118,7 +118,7 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
                   CustomRichText(
                     onTap: openRegisterPage,
                     text: "Register",
-                    mainText: "You don't have an account?",
+                    mainText: "You don't have an account? ",
                   ),
                 ],
               ),

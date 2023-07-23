@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:food_ui/src/common/constants/app_color.dart';
 
+import '../../../common/constants/app_color.dart';
+import '../screens/home_page.dart';
+import '../screens/login_page.dart';
 import 'custom_button.dart';
 import 'custom_richtext.dart';
 import 'custom_text.dart';
@@ -22,6 +24,15 @@ class CustomCreatePage extends StatefulWidget {
 
 class _CustomCreatePageState extends State<CustomCreatePage> {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
+
+  String? validateName(String? value) {
+    if (value != null && value.length <= 2) {
+      return "Invalid name";
+    }
+
+    return null;
+  }
+
 
   String? validateEmail(String? value) {
     if (value != null &&
@@ -57,16 +68,11 @@ class _CustomCreatePageState extends State<CustomCreatePage> {
     return null;
   }
 
-  String? validateFulName(String? value){
-    if (value != null && !RegExp(r".{8,}").hasMatch(value)) {
-      return "Password is too short, it must be at least 8 characters";
-    }
-    return null;
-  }
+  void openLoginPage()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage(),),);
 
   void onPressed(){
     if(formKey.currentState!.validate()){
-      // Navigator.push(context, MaterialPageRoute(builder: (context) => A(),));
+      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage(),));
     }
   }
 
@@ -99,7 +105,7 @@ class _CustomCreatePageState extends State<CustomCreatePage> {
                         height: widget.constraints.maxHeight * .05,
                       ),
                       CustomTextFormField(
-                        validator: validateFulName,
+                        validator: validateName,
                         hinText: "Full Name",
                         icon: Icons.person,
                       ),
@@ -178,7 +184,7 @@ class _CustomCreatePageState extends State<CustomCreatePage> {
                     onPressed: onPressed,
                   ),
                   CustomRichText(
-                    onTap: () {},
+                    onTap: openLoginPage,
                     text: "Log In",
                     mainText: "Already Have An Acount? ",
                   ),
