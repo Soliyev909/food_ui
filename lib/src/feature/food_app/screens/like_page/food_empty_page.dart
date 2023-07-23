@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_ui/src/feature/food_app/widget/custom_button.dart';
 
 import '../../../../common/constants/app_icons.dart';
+import '../../widget/custom_button.dart';
 
 class FoodEmptyPage extends StatelessWidget {
   const FoodEmptyPage({Key? key}) : super(key: key);
@@ -9,21 +9,26 @@ class FoodEmptyPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Colors.white,
-        body: Column(
-          children: [
-            SizedBox(height: MediaQuery.of(context).size.height * .1,),
-            const Center(
-              child: Image(
-                image: AssetImage(AppIcons.center),
-              ),
+      backgroundColor: Colors.white,
+      body: Column(
+        children: [
+          SizedBox(
+            height: MediaQuery.of(context).size.height * .1,
+          ),
+          const Center(
+            child: Image(
+              image: AssetImage(AppIcons.center),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * .16,),
-            CustomButton(
-              text: "Search Food",
-              onPressed: () {},
-            ),
-          ],
-        ));
+          ),
+          SizedBox(
+            height: MediaQuery.of(context).size.height * .16,
+          ),
+          CustomButton(
+            text: "Search Food",
+            onPressed: () {},
+          ),
+        ],
+      ),
+    );
   }
 }

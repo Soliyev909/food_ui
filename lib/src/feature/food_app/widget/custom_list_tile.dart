@@ -12,7 +12,7 @@ class CustomListTile extends StatefulWidget {
     Key? key,
     required this.title,
     required this.leadingIconPath,
-    this.trailing = AppIcons.isListTileicon,
+    this.trailing = AppIcons.ic_arrow_right,
   }) : super(key: key);
 
   @override

@@ -13,24 +13,24 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-  List<Widget> items = [
-    CustomListTile(
+   List<Widget>  items = [
+    const CustomListTile(
       title: "Edit Profile",
       leadingIconPath: AppIcons.icProfile,
     ),
-    CustomListTile(
+    const CustomListTile(
       title: "Renew Plans",
       leadingIconPath: AppIcons.icStar,
     ),
-    CustomListTile(
+    const CustomListTile(
       title: "Settings",
       leadingIconPath: AppIcons.icSetting,
     ),
-    CustomListTile(
+    const CustomListTile(
       title: "Terms & Privacy Policy",
       leadingIconPath: AppIcons.icPaper,
     ),
-    CustomListTile(
+    const CustomListTile(
       title: "Log Out",
       leadingIconPath: AppIcons.icLogout,
     ),

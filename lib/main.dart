@@ -1,12 +1,22 @@
 
+import 'package:camera/camera.dart';
 import 'package:device_preview/device_preview.dart';
 import 'package:flutter/material.dart';
 
 import 'src/common/widget/app.dart';
 
-void main() => runApp(
+
+late List<CameraDescription> cameras;
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  cameras = await availableCameras();
+
+  runApp(
       DevicePreview(
         enabled: true,
         builder: (context) => const MyApp(),
       ),
     );
+}

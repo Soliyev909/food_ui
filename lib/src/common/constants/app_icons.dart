@@ -20,6 +20,8 @@ abstract class AppIcons{
   static const icStar = "assets/images/icons/ic_star.png";
   static const icUser = "assets/images/icons/ic_user.png";
   static const icUserBold = "assets/images/icons/ic_user_bold.png";
-  static const isListTileicon = "assets/images/icons/Arrow - Right 2.png";
+  static const isListTileicon = "assets/images/icons/ic_arrow_right.png";
   static const center = "assets/images/icons/center.png";
+  static const ic_arrow_right = "assets/images/icons/ic_arrow_right.png";
+  static const ic_frame = "assets/images/icons/ic_frame.png";
 }
