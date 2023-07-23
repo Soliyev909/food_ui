@@ -6,7 +6,7 @@ import '../widget/custom_bottom_camera.dart';
 import '../widget/custom_bottom_images.dart';
 import 'camera_page.dart';
 import 'home_page.dart';
-import 'likes_page.dart';
+import 'like_page/likes_page.dart';
 import 'profile_page.dart';
 import 'search_page/search_page.dart';
 
@@ -60,7 +60,7 @@ class _CustomPageControllerState extends State<CustomPageController> {
           const HomePage(),
           SearchPage(favourites: favourites),
           const CameraPage(),
-          const LikesPage(),
+          LikesPage(items: favourites),
           const ProfilePage(),
         ],
       ),

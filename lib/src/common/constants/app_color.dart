@@ -19,4 +19,7 @@ abstract class AppColor{
   static const searchPageTitleColor = Color(0xFF0D0D0D);
   static const textColor = Color(0xFFA1A1A1);
   static const listTilecolor = Color(0xFFFFF8EE);
+  static const bottoncolor_1 = Color(0xFFFF9385);
+  static const bottoncolor_2 = Color(0xFFFFF8EE);
+  static const foodColor = Color(0xFFFFF8EB);
 }

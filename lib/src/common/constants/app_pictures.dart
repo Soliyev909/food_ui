@@ -22,4 +22,5 @@ abstract class AppPictures{
   static const imgVegetable = "assets/images/picture/img_vegetable.png";
   static const imgGreenSalad = "assets/images/picture/img_green_salad.png";
   static const imgSearchPageNotFound = "assets/images/picture/img_search_page_not_found.png";
+
 }
