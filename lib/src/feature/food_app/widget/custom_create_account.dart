@@ -76,11 +76,13 @@ class _CustomCreatePageState extends State<CustomCreatePage> {
 
   void onPressed() {
     if (formKey.currentState!.validate()) {
-      Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const CustomPageController(),
-          ));
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const CustomPageController(),
+        ),
+        (route) => false,
+      );
     }
   }
 
@@ -102,8 +104,7 @@ class _CustomCreatePageState extends State<CustomCreatePage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const CustomText(
-                      text1: "Sign Up", text2: "Welcome to Kcal!"),
+                  const CustomText(text1: "Sign Up", text2: "Welcome to Kcal!"),
                   SizedBox(
                     height: widget.constraints.maxHeight * .04,
                   ),
@@ -128,7 +129,9 @@ class _CustomCreatePageState extends State<CustomCreatePage> {
                 ],
               ),
             ),
-            Spacer(flex: 6,),
+            const Spacer(
+              flex: 6,
+            ),
             const Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [

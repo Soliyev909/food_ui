@@ -24,11 +24,12 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
 
   void openHomePage() {
     if (formKey.currentState!.validate()) {
-      Navigator.push(
+      Navigator.pushAndRemoveUntil(
         context,
         MaterialPageRoute(
           builder: (context) => const CustomPageController(),
         ),
+        (route) => false,
       );
     }
   }

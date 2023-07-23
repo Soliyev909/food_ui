@@ -47,6 +47,12 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
             validator: widget.validator,
             obscureText: value,
             decoration: InputDecoration(
+              focusedBorder: const OutlineInputBorder(
+                borderSide: BorderSide(color: AppColor.mainColor, width: 1.5),
+                borderRadius: BorderRadius.all(
+                  Radius.circular(20),
+                ),
+              ),
               border: const OutlineInputBorder(
                 borderRadius: BorderRadius.all(
                   Radius.circular(20),
