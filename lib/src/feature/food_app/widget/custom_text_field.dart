@@ -4,27 +4,25 @@ import '../../../common/constants/app_icons.dart';
 
 class CustomTextField extends StatefulWidget {
   const CustomTextField({
-    required this.enabled,
-    this.autofocus = false,
-    this.isFavouriteTextField = false,
     required this.controller,
+    this.isFavouriteTextField = false,
     this.onChanged,
     super.key,
-    this.focusNode,
+    required this.onTap,
   });
 
-  final bool enabled;
   final bool isFavouriteTextField;
-  final bool autofocus;
   final TextEditingController controller;
   final void Function(String value)? onChanged;
-  final FocusNode? focusNode;
+  final void Function() onTap;
 
   @override
   State<CustomTextField> createState() => _CustomTextFieldState();
 }
 
 class _CustomTextFieldState extends State<CustomTextField> {
+  late final FocusNode focusNode;
+
   ValueNotifier<String> text = ValueNotifier("");
 
   @override
@@ -33,6 +31,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
     widget.controller.addListener(() {
       text.value = widget.controller.text;
     });
+    focusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    focusNode.dispose();
   }
 
   Widget? suffixIcon(String value) {
@@ -52,11 +57,13 @@ class _CustomTextFieldState extends State<CustomTextField> {
         valueListenable: text,
         builder: (context, value, child) {
           return TextField(
-            focusNode: widget.focusNode,
-            autofocus: widget.autofocus,
+            onTap: widget.onTap,
+            onTapOutside: (event) {
+              focusNode.unfocus();
+            },
+            focusNode: focusNode,
             onChanged: widget.onChanged,
             controller: widget.controller,
-            enabled: widget.enabled,
             decoration: InputDecoration(
               border: buildOutlineInputBorder(),
               enabledBorder: buildOutlineInputBorder(),
@@ -64,8 +71,12 @@ class _CustomTextFieldState extends State<CustomTextField> {
               filled: true,
               fillColor: AppColor.textFieldBKG,
               prefixIcon: const Padding(
-                padding: EdgeInsets.only(left: 20,top: 15,right: 9,bottom: 15),
-                child: Image(image: AssetImage(AppIcons.icSearch),width: 16,height: 16),
+                padding:
+                    EdgeInsets.only(left: 20, top: 15, right: 9, bottom: 15),
+                child: Image(
+                    image: AssetImage(AppIcons.icSearch),
+                    width: 16,
+                    height: 16),
               ),
               suffixIcon: suffixIcon(value),
               hintText: "Search recipes, articles, people...",

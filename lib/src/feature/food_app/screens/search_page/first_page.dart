@@ -3,15 +3,9 @@ import 'package:flutter/material.dart';
 import '../../../../common/constants/app_pictures.dart';
 import '../../models/search_page_card_model.dart';
 import '../../widget/custom_search_card.dart';
-import '../../widget/custom_text_field.dart';
 
 class FirstPage extends StatefulWidget {
-  const FirstPage({
-    super.key,
-    required this.onFirstTap,
-  });
-
-  final void Function() onFirstTap;
+  const FirstPage({super.key});
 
   @override
   State<FirstPage> createState() => _FirstPageState();
@@ -44,37 +38,27 @@ class _FirstPageState extends State<FirstPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.sizeOf(context);
-    return Padding(
-      padding: const EdgeInsets.only(left: 24),
+    return Expanded(
+      flex: 10,
       child: Column(
         children: [
-          Expanded(
-            child: Center(
-              child: GestureDetector(
-                onTap: widget.onFirstTap,
-                child: CustomTextField(
-                  enabled: false,
-                  controller: TextEditingController(),
-                ),
-              ),
-            ),
-          ),
           buildTitleText("Hot Now"),
           Expanded(
             flex: 2,
             child: FractionallySizedBox(
               heightFactor: 1,
               child: ListView(
+                physics: const BouncingScrollPhysics(),
                 scrollDirection: Axis.horizontal,
                 children: searchPageCards
                     .map(
                       (e) => SearchPageCard(
-                    width: size.width * 0.5,
-                    title: e.title,
-                    subtitle: e.subtitle,
-                    imagePath: e.imagePath,
-                  ),
-                )
+                        width: size.width * 0.5,
+                        title: e.title,
+                        subtitle: e.subtitle,
+                        imagePath: e.imagePath,
+                      ),
+                    )
                     .toList(),
               ),
             ),
@@ -84,7 +68,17 @@ class _FirstPageState extends State<FirstPage> {
             flex: 2,
             child: SizedBox.expand(
               child: Column(
-                children: [],
+                children: [
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        "best vegetable recipes",
+                        style: TextStyle(),
+                      ),
+                    ],
+                  )
+                ],
               ),
             ),
           ),

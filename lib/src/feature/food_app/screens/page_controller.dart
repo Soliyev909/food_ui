@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_ui/src/feature/food_app/models/food_model.dart';
 
 import '../../../common/constants/app_icons.dart';
 import '../widget/custom_bottom_camera.dart';
@@ -17,9 +18,11 @@ class CustomPageController extends StatefulWidget {
 }
 
 class _CustomPageControllerState extends State<CustomPageController> {
+  final ValueNotifier<List<FoodModel>> favourites = ValueNotifier([]);
   int pageNumber = 0;
 
   late final PageController controller;
+
   @override
   void initState() {
     super.initState();
@@ -53,12 +56,12 @@ class _CustomPageControllerState extends State<CustomPageController> {
         physics: const NeverScrollableScrollPhysics(),
         controller: controller,
         onPageChanged: pageChange,
-        children: const [
-          HomePage(),
-          SearchPage(),
-          CameraPage(),
-          LikesPage(),
-          ProfilePage(),
+        children: [
+          const HomePage(),
+          SearchPage(favourites: favourites),
+          const CameraPage(),
+          const LikesPage(),
+          const ProfilePage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
