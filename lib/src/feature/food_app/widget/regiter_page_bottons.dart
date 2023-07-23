@@ -18,14 +18,14 @@ class CustomRegisterButton extends StatelessWidget {
       onPressed: () {},
       icon: Image(
         image: AssetImage(iconPath),
-        width: 30,
-        height: 30,
+        width: 24,
+        height: 24,
         color: AppColor.white,
       ),
       style: IconButton.styleFrom(
         backgroundColor: AppColor.grey,
         fixedSize:
-            Size(constraints.maxHeight * .08, constraints.maxHeight * .09),
+            Size(constraints.maxHeight * .07, constraints.maxHeight * .07),
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(Radius.circular(15)),
         ),

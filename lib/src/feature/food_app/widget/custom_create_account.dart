@@ -33,7 +33,6 @@ class _CustomCreatePageState extends State<CustomCreatePage> {
     return null;
   }
 
-
   String? validateEmail(String? value) {
     if (value != null &&
         !RegExp(r"^[a-zA-Z][a-zA-Z0-9]*@[a-zA-Z0-9]+\.[a-zA-Z]{2,6}$")
@@ -68,11 +67,20 @@ class _CustomCreatePageState extends State<CustomCreatePage> {
     return null;
   }
 
-  void openLoginPage()=> Navigator.push(context, MaterialPageRoute(builder: (context)=> const LoginPage(),),);
+  void openLoginPage() => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const LoginPage(),
+        ),
+      );
 
-  void onPressed(){
-    if(formKey.currentState!.validate()){
-      Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage(),));
+  void onPressed() {
+    if (formKey.currentState!.validate()) {
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const HomePage(),
+          ));
     }
   }
 
@@ -81,18 +89,15 @@ class _CustomCreatePageState extends State<CustomCreatePage> {
     return Form(
       key: formKey,
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Expanded(
-            flex: 6,
+          SizedBox(
+            height: widget.constraints.maxHeight * .6,
             child: Column(
               children: [
-                SizedBox(
-                  height: widget.constraints.maxHeight * .03,
-                ),
+                SizedBox(height: widget.constraints.maxHeight * .05,),
                 const LogoWidget(),
                 SizedBox(
-                  height: widget.constraints.maxHeight * .04,
+                    height: widget.constraints.maxHeight * .01
                 ),
                 Padding(
                   padding: const EdgeInsets.only(left: 25, right: 25),
@@ -100,9 +105,10 @@ class _CustomCreatePageState extends State<CustomCreatePage> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const CustomText(text1: "Sign Up", text2: "Welcome to Kcal!"),
+                      const CustomText(
+                          text1: "Sign Up", text2: "Welcome to Kcal!"),
                       SizedBox(
-                        height: widget.constraints.maxHeight * .05,
+                        height: widget.constraints.maxHeight * .04,
                       ),
                       CustomTextFormField(
                         validator: validateName,
@@ -128,70 +134,69 @@ class _CustomCreatePageState extends State<CustomCreatePage> {
               ],
             ),
           ),
-          Expanded(
-            flex: 4,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Expanded(
-                        flex: 3,
-                        child: Divider(
-                          color: AppColor.grey,
-                          height: 1,
-                          indent: 20,
-                        ),
+          SizedBox(
+            height: widget.constraints.maxHeight * .4,
+            width: double.infinity,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [
+                    Expanded(
+                      flex: 3,
+                      child: Divider(
+                        color: AppColor.grey,
+                        height: 1,
+                        indent: 20,
                       ),
-                      Expanded(
-                        child: Center(
-                          child: Text(
-                            "or",
-                            style: TextStyle(
-                              color: AppColor.grey,
-                            ),
+                    ),
+                    Expanded(
+                      child: Center(
+                        child: Text(
+                          "or",
+                          style: TextStyle(
+                            color: AppColor.grey,
                           ),
                         ),
                       ),
-                      Expanded(
-                        flex: 3,
-                        child: Divider(
-                          height: 1,
-                          endIndent: 20,
-                          color: AppColor.grey,
-                        ),
+                    ),
+                    Expanded(
+                      flex: 3,
+                      child: Divider(
+                        height: 1,
+                        endIndent: 20,
+                        color: AppColor.grey,
                       ),
-                    ],
-                  ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      CustomRegisterButton(
-                        constraints: widget.constraints,
-                        iconPath: "assets/images/picture/apple.png",
-                      ),
-                      SizedBox(width: MediaQuery.of(context).size.width * .03),
-                      CustomRegisterButton(
-                        constraints: widget.constraints,
-                        iconPath: "assets/images/picture/email.png",
-                      ),
-                    ],
-                  ),
-                  CustomButton(
-                    text: "Sign Up",
-                    onPressed: onPressed,
-                  ),
-                  CustomRichText(
-                    onTap: openLoginPage,
-                    text: "Log In",
-                    mainText: "Already Have An Acount? ",
-                  ),
-                ],
-              ),
+                    ),
+                  ],
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CustomRegisterButton(
+                      constraints: widget.constraints,
+                      iconPath: "assets/images/picture/apple.png",
+                    ),
+                    SizedBox(width: MediaQuery.of(context).size.width * .04),
+                    CustomRegisterButton(
+                      constraints: widget.constraints,
+                      iconPath: "assets/images/picture/email.png",
+                    ),
+                  ],
+                ),
+                CustomButton(
+                  text: "Sign Up",
+                  onPressed: onPressed,
+                ),
+                CustomRichText(
+                  onTap: openLoginPage,
+                  text: "Log In",
+                  mainText: "Already Have An Acount? ",
+                ),
+              ],
             ),
-          ),
+          )
         ],
       ),
     );

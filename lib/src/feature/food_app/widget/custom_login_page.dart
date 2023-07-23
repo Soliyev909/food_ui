@@ -75,7 +75,7 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
             flex: 3,
             child: Column(
               children: [
-                SizedBox(height: widget.constraints.maxHeight * .03,),
+                SizedBox(height: widget.constraints.maxHeight * .05,),
                 const LogoWidget(),
                 SizedBox(height: widget.constraints.maxHeight * .04,),
                 Padding(
