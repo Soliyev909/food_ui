@@ -67,7 +67,6 @@ class _SearchPageState extends State<SearchPage> {
                       "Search",
                       style: TextStyle(
                         color: AppColor.searchPageTitleColor,
-                        fontSize: 12,
                         letterSpacing: 0.6,
                         fontWeight: FontWeight.w500,
                       ),

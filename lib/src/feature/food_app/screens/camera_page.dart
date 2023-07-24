@@ -63,7 +63,7 @@ class _CameraPageState extends State<CameraPage> {
                 children: [
                   IconButton(
                     onPressed: closeButton,
-                    icon: Icon(
+                    icon: const Icon(
                       size: 30,
                       Icons.close,
                       color: Colors.white,
@@ -71,7 +71,7 @@ class _CameraPageState extends State<CameraPage> {
                   ),
                   IconButton(
                     onPressed: () {},
-                    icon: Image(
+                    icon: const Image(
                       image: AssetImage(AppIcons.icLightning),
                       height: 25,
                       width: 25,
@@ -80,7 +80,7 @@ class _CameraPageState extends State<CameraPage> {
                 ],
               ),
             ),
-            Align(
+            const Align(
               alignment: Alignment.center,
               child: Image(
                 image: AssetImage(AppPictures.camera),
@@ -113,18 +113,20 @@ class _CameraPageState extends State<CameraPage> {
                         ),
                       ),
                       InkWell(
-                        onTap: () => setState(() {
-                          screenCamera = !screenCamera;
-                          showModalBottomSheet(
-                            isScrollControlled: true,
-                            context: context,
-                            builder: (context) {
-                              return CameraDialog(
-                                screenCamera: screenCamera,
-                              );
-                            },
-                          );
-                        }),
+                        onTap: () => setState(
+                          () {
+                            screenCamera = !screenCamera;
+                            showModalBottomSheet(
+                              isScrollControlled: true,
+                              context: context,
+                              builder: (context) {
+                                return CameraDialog(
+                                  screenCamera: screenCamera,
+                                );
+                              },
+                            );
+                          },
+                        ),
                         child: const SizedBox(
                           width: 72,
                           height: 72,

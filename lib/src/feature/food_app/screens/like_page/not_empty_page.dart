@@ -3,6 +3,8 @@ import 'package:food_ui/src/common/constants/app_color.dart';
 import 'package:food_ui/src/common/constants/app_pictures.dart';
 import 'package:food_ui/src/feature/food_app/models/food_model.dart';
 
+import '../../widget/custom_like_food_card.dart';
+
 class FavoritFoodPage extends StatefulWidget {
   final ValueNotifier<List<FoodModel>> items;
 
@@ -21,56 +23,23 @@ class _FavoritFoodPage extends State<FavoritFoodPage> {
     return Scaffold(
       backgroundColor: AppColor.white,
       body: ValueListenableBuilder(
-          valueListenable: widget.items,
-          builder: (context, value, child) {
-            return Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: Wrap(
-                spacing: 10,
-                runSpacing: 10,
-                children: List.generate(value.length+1, (index) {
-                  if(index == value.length){
-                   return const SizedBox.square(
-                     dimension: 96,
-                     child: DecoratedBox(
-                       decoration: BoxDecoration(
-                         color: AppColor.foodColor,
-                         borderRadius: BorderRadius.all(
-                           Radius.circular(16),
-                         ),
-                       ),
-                       child: Center(
-                         child: Image(
-                           image: AssetImage(AppPictures.imgPlus),
-                           height: 64,
-                           width: 64,
-                         ),
-                       ),
-                     ),
-                   );
-                  }
-                  return SizedBox.square(
-                    dimension: 96,
-                    child: DecoratedBox(
-                      decoration: const BoxDecoration(
-                        color: AppColor.foodColor,
-                        borderRadius: BorderRadius.all(
-                          Radius.circular(16),
-                        ),
-                      ),
-                      child: Center(
-                        child: Image(
-                          image: AssetImage(value[index].image),
-                          height: 64,
-                          width: 64,
-                        ),
-                      ),
-                    ),
-                  );
-                }),
-              ),
-            );
-          }),
+        valueListenable: widget.items,
+        builder: (context, value, child) {
+          return Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: List.generate(
+              value.length + 1,
+              (index) {
+                if (index == value.length) {
+                  return const LikeFoodCard(image: AppPictures.imgPlus);
+                }
+                return LikeFoodCard(image: value[index].image);
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }

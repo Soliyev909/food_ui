@@ -68,6 +68,9 @@ class _CustomPageControllerState extends State<CustomPageController> {
         type: BottomNavigationBarType.fixed,
         onTap: pageChange,
         currentIndex: pageNumber,
+        showUnselectedLabels: false,
+        showSelectedLabels: false,
+        elevation: 0,
         items: [
           const BottomNavigationBarItem(
             icon: CustomButtonImages(image: AppIcons.icHome),
