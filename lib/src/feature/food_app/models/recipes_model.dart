@@ -4,7 +4,8 @@ class RecipesModel extends Product {
   final int kcal;
   final String subtitle;
 
-  RecipesModel(this.subtitle, {
+  RecipesModel({
+    required this.subtitle,
     required this.kcal,
     required super.name,
     required super.image,
