@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/src/common/constants/app_all_products.dart';
-import 'package:food_ui/src/feature/food_app/models/food_model.dart';
-import 'package:food_ui/src/feature/food_app/models/recipes_model.dart';
 import 'package:food_ui/src/feature/food_app/screens/search_page/first_page.dart';
 import 'package:food_ui/src/feature/food_app/screens/search_page/second_page.dart';
 import 'package:food_ui/src/feature/food_app/widget/custom_text_field.dart';
@@ -10,10 +8,8 @@ import '../../../../common/constants/app_color.dart';
 import '../../models/product_model.dart';
 
 class SearchPage extends StatefulWidget {
-  final ValueNotifier<List<FoodModel>> favouritesFood;
-  final ValueNotifier<List<RecipesModel>> favouritesRecipe;
 
-  const SearchPage({super.key, required this.favouritesFood, required this.favouritesRecipe});
+  const SearchPage({super.key});
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -88,8 +84,6 @@ class _SearchPageState extends State<SearchPage> {
                   ),
                   isTapped
                       ? SecondPage(
-                          favouritesRecipe: widget.favouritesRecipe,
-                          favouritesFood: widget.favouritesFood,
                           controller: _controller,
                           suggestions: suggestions,
                         )

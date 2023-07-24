@@ -19,6 +19,15 @@ class RecipesCard extends StatefulWidget {
 }
 
 class _RecipesCardState extends State<RecipesCard> {
+
+  void onPressed() {
+      widget.recipesModel.isFavourite.value = false;
+      List<RecipesModel> temp = widget.recipeList.value;
+      temp.remove(widget.recipesModel);
+      widget.recipeList.value = temp.toList();
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -45,14 +54,7 @@ class _RecipesCardState extends State<RecipesCard> {
                     child: IconButton(
                       splashRadius: 15,
                       padding: const EdgeInsets.all(0),
-                      onPressed: () {
-                        print(widget.recipeList.value);
-                        widget.recipesModel.isFavourite.value = false;
-                        List<RecipesModel> temp = widget.recipeList.value;
-                        temp.remove(widget.recipesModel);
-                        widget.recipeList.value = temp;
-                        print(widget.recipeList.value);
-                      },
+                      onPressed: onPressed,
                       icon: const Image(
                         image: AssetImage(AppIcons.isFevarite),
                         width: 20,

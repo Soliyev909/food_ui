@@ -1,19 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:food_ui/src/feature/food_app/models/favorite_resipe.dart';
 import 'package:food_ui/src/feature/food_app/models/food_model.dart';
 import 'package:food_ui/src/feature/food_app/models/product_model.dart';
 
+import '../models/favourite_food.dart';
 import '../models/recipes_model.dart';
 
 class OpenFood extends StatefulWidget {
   final Product food;
-  final ValueNotifier<List<FoodModel>> favouritesFood;
-  final ValueNotifier<List<RecipesModel>> favouritesRecipe;
 
   const OpenFood({
     super.key,
     required this.food,
-    required this.favouritesFood,
-    required this.favouritesRecipe,
   });
 
   @override
@@ -49,15 +47,15 @@ class _OpenFoodState extends State<OpenFood> {
 
                     if(currentFood) {
                       if(product is FoodModel) {
-                        widget.favouritesFood.value.remove(product);
+                        favouriteFoods.foods.value.remove(product);
                       } else if (product is RecipesModel) {
-                        widget.favouritesRecipe.value.remove(product);
+                        resipeFood.resipe.value.remove(product);
                       }
                     } else {
                       if(product is FoodModel) {
-                        widget.favouritesFood.value.add(product);
+                        favouriteFoods.foods.value.add(product);
                       } else if (product is RecipesModel) {
-                        widget.favouritesRecipe.value.add(product);
+                        resipeFood.resipe.value.add(product);
                       }
                     }
 

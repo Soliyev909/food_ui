@@ -1,16 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/src/common/constants/app_color.dart';
 import 'package:food_ui/src/common/constants/app_pictures.dart';
-import 'package:food_ui/src/feature/food_app/models/food_model.dart';
+import 'package:food_ui/src/feature/food_app/models/favourite_food.dart';
 
 import '../../widget/custom_like_food_card.dart';
 
 class FavoritFoodPage extends StatefulWidget {
-  final ValueNotifier<List<FoodModel>> items;
 
   const FavoritFoodPage({
     Key? key,
-    required this.items,
   }) : super(key: key);
 
   @override
@@ -23,7 +21,7 @@ class _FavoritFoodPage extends State<FavoritFoodPage> {
     return Scaffold(
       backgroundColor: AppColor.white,
       body: ValueListenableBuilder(
-        valueListenable: widget.items,
+        valueListenable: favouriteFoods.foods,
         builder: (context, value, child) {
           return Wrap(
             spacing: 10,

@@ -117,7 +117,9 @@ class _CameraDialogState extends State<CameraDialog> {
             Center(
               child: CustomButton(
                 text: "Add To Favorites",
-                onPressed: () {},
+                onPressed: () {
+
+                },
               ),
             ),
             const SizedBox(height: 10),

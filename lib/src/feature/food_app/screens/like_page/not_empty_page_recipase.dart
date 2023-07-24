@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:food_ui/src/feature/food_app/models/favorite_resipe.dart';
 
 import '../../../../common/constants/app_color.dart';
-import '../../models/recipes_model.dart';
 import '../../widget/custom_recisep.dart';
 
 class NotEmptyRecipasePage extends StatefulWidget {
-  final ValueNotifier<List<RecipesModel>> recipes;
 
   const NotEmptyRecipasePage({
     Key? key,
-    required this.recipes,
   }) : super(key: key);
 
   @override
@@ -22,10 +20,10 @@ class _NotEmptyRecipasePage extends State<NotEmptyRecipasePage> {
     return Scaffold(
       backgroundColor: AppColor.white,
       body: ValueListenableBuilder(
-        valueListenable: widget.recipes,
+        valueListenable: resipeFood.resipe,
         builder: (context,value,child) {
           return Wrap(
-            children: value.map((e) => RecipesCard(recipesModel: e, recipeList: widget.recipes)).toList(),
+            children: value.map((e) => RecipesCard(recipesModel: e, recipeList: resipeFood.resipe)).toList(),
           );
         }
       ),
