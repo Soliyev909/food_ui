@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_ui/src/feature/food_app/screens/intro_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../common/constants/app_color.dart';
 import '../../../common/constants/app_icons.dart';
@@ -13,7 +15,21 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
-   List<Widget>  items = [
+  void onTap() async {
+    SharedPreferences db = await SharedPreferences.getInstance();
+    db.setBool("isLogged", true);
+    if (mounted) {
+      Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const IntroPage(),
+        ),
+        (route) => false,
+      );
+    }
+  }
+
+  late List<Widget> items = [
     const CustomListTile(
       title: "Edit Profile",
       leadingIconPath: AppIcons.icProfile,
@@ -30,9 +46,10 @@ class _ProfilePageState extends State<ProfilePage> {
       title: "Terms & Privacy Policy",
       leadingIconPath: AppIcons.icPaper,
     ),
-    const CustomListTile(
+    CustomListTile(
       title: "Log Out",
       leadingIconPath: AppIcons.icLogout,
+      onTap: onTap,
     ),
   ];
 
@@ -93,13 +110,26 @@ class _ProfilePageState extends State<ProfilePage> {
               ),
             ),
             SizedBox(height: MediaQuery.of(context).size.height * .02),
-            const Center(
-              child: Text(
-                "Shambhavi Mishra",
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                  fontSize: 25,
-                ),
+            Center(
+              child: FutureBuilder(
+                future: SharedPreferences.getInstance(),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return CircularProgressIndicator();
+                  } else if (snapshot.hasError) {
+                    throw "Error";
+                  } else {
+                    SharedPreferences db = snapshot.data!;
+                    String name = db.getString("name") ?? "";
+                    return Text(
+                      name,
+                      style: const TextStyle(
+                        fontWeight: FontWeight.w600,
+                        fontSize: 25,
+                      ),
+                    );
+                  }
+                },
               ),
             ),
             const Center(
@@ -112,28 +142,30 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
-
             SizedBox(height: MediaQuery.of(context).size.height * .02),
             Column(
-              children: List.generate(items.length, (index) {
-                if (index == 3) {
-                  return Column(
-                    children: [
-                      const Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: Divider(
-                          color: Colors.black26,
-                          indent: 3,
-                          endIndent: 3,
+              children: List.generate(
+                items.length,
+                (index) {
+                  if (index == 3) {
+                    return Column(
+                      children: [
+                        const Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 20),
+                          child: Divider(
+                            color: Colors.black26,
+                            indent: 3,
+                            endIndent: 3,
+                          ),
                         ),
-                      ),
-                      items[index],
-                    ],
-                  );
-                } else {
-                  return items[index];
-                }
-              }),
+                        items[index],
+                      ],
+                    );
+                  } else {
+                    return items[index];
+                  }
+                },
+              ),
             ),
           ],
         ),

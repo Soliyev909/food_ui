@@ -7,12 +7,14 @@ class CustomListTile extends StatefulWidget {
   final String title;
   final String leadingIconPath;
   final String trailing;
+  final void Function()? onTap;
 
   const CustomListTile({
     Key? key,
     required this.title,
     required this.leadingIconPath,
     this.trailing = AppIcons.icArrowRight,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -21,6 +23,7 @@ class CustomListTile extends StatefulWidget {
 
 class _CustomListTileState extends State<CustomListTile> {
   late String trailing;
+
   @override
   void initState() {
     trailing = widget.trailing;
@@ -32,7 +35,7 @@ class _CustomListTileState extends State<CustomListTile> {
     return Padding(
       padding: const EdgeInsets.all(5.0),
       child: ListTile(
-        onTap: () {},
+        onTap: widget.onTap,
         title: Text(widget.title),
         leading: SizedBox(
           width: 48,

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/src/common/constants/app_pictures.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../common/constants/app_color.dart';
 import '../../../common/constants/app_icons.dart';
@@ -55,26 +56,40 @@ class _HomePageState extends State<HomePage> {
               children: [
                 const SizedBox(height: 50),
                 Center(
-                  child: RichText(
-                    textAlign: TextAlign.center,
-                    text: const TextSpan(
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w700,
-                        color: AppColor.mainColor,
-                      ),
-                      children: [
-                        TextSpan(text: "Hello Shambhavi,\n"),
-                        TextSpan(
-                          text: "Find, track and eat heathy food.",
-                          style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w500,
-                            color: AppColor.textFieldHintColor,
+                  child: FutureBuilder(
+                    future: SharedPreferences.getInstance(),
+                    builder: (context, snapshot) {
+                      if(snapshot.connectionState == ConnectionState.waiting) {
+                        return const CircularProgressIndicator();
+                      } else if (snapshot.hasError) {
+                        throw "Error";
+                      } else {
+                        SharedPreferences db = snapshot.data!;
+                        String name = db.getString("name") ?? "";
+                        return RichText(
+                          textAlign: TextAlign.center,
+                          text: TextSpan(
+                            style: const TextStyle(
+                              fontSize: 25,
+                              fontWeight: FontWeight.w700,
+                              color: AppColor.mainColor,
+                            ),
+                            children: [
+                              TextSpan(text: "Hello $name,\n"),
+                              const TextSpan(
+                                text: "Find, track and eat heathy food.",
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.w500,
+                                  color: AppColor.textFieldHintColor,
+                                ),
+                              ),
+                            ],
                           ),
-                        ),
-                      ],
-                    ),
+                        );
+                      }
+
+                    }
                   ),
                 ),
                 const SizedBox(height: 30),

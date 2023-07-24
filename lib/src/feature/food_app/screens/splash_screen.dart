@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_ui/src/feature/food_app/screens/page_controller.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../../../common/constants/app_color.dart';
 import 'intro_page.dart';
 
@@ -11,14 +13,35 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
 
+  Widget checkLogin() {
+    return FutureBuilder<SharedPreferences>(
+      future: SharedPreferences.getInstance(),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          SharedPreferences database = snapshot.data!;
+          bool newUser = database.getBool("isLogged") ?? true;
+          if (newUser) {
+            return const IntroPage();
+          } else {
+            return  const CustomPageController();
+          }
+        } else if (snapshot.hasError) {
+          return const Center(child: Text("Something went wrong"));
+        } else {
+          return const Center(child: CircularProgressIndicator());
+        }
+      },
+    );
+  }
+
 
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 1)).then(
-          (value) => Navigator.of(context).pushReplacement(
+      (value) => Navigator.of(context).pushReplacement(
         MaterialPageRoute(
-          builder: (context) => const IntroPage(),
+          builder: (context) => checkLogin(),
         ),
       ),
     );

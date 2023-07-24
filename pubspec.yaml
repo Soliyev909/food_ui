@@ -17,6 +17,7 @@ dependencies:
   camera: ^0.10.5+2
   url_launcher: ^6.1.12
   torch_controller: ^2.0.1
+  shared_preferences: ^2.2.0
 
 
 

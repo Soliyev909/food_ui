@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_ui/src/feature/food_app/widget/custom_scaffold_messenger.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import '../screens/page_controller.dart';
 import '../screens/registration_page.dart';
 import 'custom_button.dart';
@@ -19,18 +21,48 @@ class CustomLoginPage extends StatefulWidget {
   State<CustomLoginPage> createState() => _CustomLoginPageState();
 }
 
-class _CustomLoginPageState extends State<CustomLoginPage> {
+class _CustomLoginPageState extends State<CustomLoginPage>
+    with CustomScaffoldMessenger {
   GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
-  void openHomePage() {
+  late TextEditingController emailController;
+  late TextEditingController passwordController;
+
+  @override
+  void initState() {
+    super.initState();
+    emailController = TextEditingController();
+    passwordController = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+  }
+
+  void openHomePage() async {
     if (formKey.currentState!.validate()) {
-      Navigator.pushAndRemoveUntil(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const CustomPageController(),
-        ),
-        (route) => false,
-      );
+      SharedPreferences db = await SharedPreferences.getInstance();
+      List<String> userData = db.getStringList(emailController.text) ?? [];
+      if (userData.isEmpty && mounted) {
+        showCustomSnack(context, "Ro'yhatdan o'tmagansiz!");
+      } else {
+        String password = userData.first;
+        if (password == passwordController.text) {
+          db.setBool("isLogged", false);
+          Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(
+              builder: (context) =>  const CustomPageController(),
+            ),
+            (route) => false,
+          );
+        } else if (mounted) {
+          showCustomSnack(context, "Email yoki parol xato. Qayta urining...");
+        }
+      }
     }
   }
 
@@ -81,9 +113,7 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            SizedBox(
-              height: widget.constraints.maxHeight * .07
-            ),
+            SizedBox(height: widget.constraints.maxHeight * .07),
             const LogoWidget(),
             SizedBox(
               height: widget.constraints.maxHeight * .01,
@@ -94,8 +124,7 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  const CustomText(
-                      text1: "Sign In", text2: "Welcome to back!"),
+                  const CustomText(text1: "Sign In", text2: "Welcome to back!"),
                   SizedBox(
                     height: widget.constraints.maxHeight * .05,
                   ),
@@ -103,6 +132,7 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
                     validator: validateEmail,
                     hinText: "Email address",
                     icon: Icons.email,
+                    controller: emailController,
                   ),
                   SizedBox(height: widget.constraints.maxHeight * 0.02),
                   CustomTextFormField(
@@ -111,6 +141,7 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
                     helperText: true,
                     icon: Icons.lock,
                     res: true,
+                    controller: passwordController,
                   ),
                 ],
               ),
@@ -122,7 +153,9 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
                 onPressed: openHomePage,
               ),
             ),
-            SizedBox(height: widget.constraints.maxHeight * .014,),
+            SizedBox(
+              height: widget.constraints.maxHeight * .014,
+            ),
             Center(
               child: CustomRichText(
                 onTap: openRegisterPage,
@@ -130,7 +163,9 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
                 mainText: "You don't have an account? ",
               ),
             ),
-            SizedBox(height: widget.constraints.maxHeight * .03,),
+            SizedBox(
+              height: widget.constraints.maxHeight * .03,
+            ),
           ],
         ),
       ),

@@ -8,6 +8,7 @@ class CustomTextFormField extends StatefulWidget {
   final String? Function(String? value) validator;
   final bool res;
   final bool helperText;
+  final TextEditingController controller;
 
   const CustomTextFormField({
     Key? key,
@@ -16,6 +17,7 @@ class CustomTextFormField extends StatefulWidget {
     required this.validator,
     this.res = false,
     this.helperText = false,
+    required this.controller,
   }) : super(key: key);
 
   @override
@@ -44,6 +46,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         valueListenable: isObscure,
         builder: (context, value, _) {
           return TextFormField(
+            controller: widget.controller,
             validator: widget.validator,
             obscureText: value,
             decoration: InputDecoration(
@@ -77,8 +80,9 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
                             )
                           : const Text(
                               "Hide password",
-                              style: TextStyle(color: AppColor.mainColor,
-                              fontSize: 16,
+                              style: TextStyle(
+                                color: AppColor.mainColor,
+                                fontSize: 16,
                               ),
                             )),
                     )
