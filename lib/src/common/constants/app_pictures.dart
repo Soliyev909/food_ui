@@ -24,6 +24,7 @@ abstract class AppPictures{
   static const imgSearchPageNotFound = "assets/images/picture/img_search_page_not_found.png";
   static const camera = "assets/images/picture/camera.png";
   static const view = "assets/images/picture/view.png";
+  static const imgrecipesimage = "assets/images/picture/recipes.png";
   static const snacks = "assets/images/picture/snacks.png";
 
 

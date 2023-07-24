@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../common/constants/app_icons.dart';
+import '../models/recipes_model.dart';
 import '../models/food_model.dart';
 import '../widget/custom_bottom_camera.dart';
 import '../widget/custom_bottom_images.dart';
@@ -19,6 +20,7 @@ class CustomPageController extends StatefulWidget {
 
 class _CustomPageControllerState extends State<CustomPageController> {
   final ValueNotifier<List<FoodModel>> favourites = ValueNotifier([]);
+  final ValueNotifier<List<RecipesModel>> recipes = ValueNotifier([]);
   int pageNumber = 0;
 
   late final PageController controller;
@@ -60,7 +62,7 @@ class _CustomPageControllerState extends State<CustomPageController> {
           const HomePage(),
           SearchPage(favourites: favourites),
           const CameraPage(),
-          LikesPage(items: favourites),
+          LikesPage(foodlikes: favourites,recipes: recipes),
           const ProfilePage(),
         ],
       ),

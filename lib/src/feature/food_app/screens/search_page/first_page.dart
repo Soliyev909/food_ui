@@ -97,6 +97,7 @@ class _FirstPageState extends State<FirstPage> {
       children: [
         GestureDetector(
           onTap: () async {
+            print("asas");
             const url = "https://youtu.be/dQw4w9WgXcQ";
             if(await canLaunchUrlString(url)) {
               await launchUrlString(url);

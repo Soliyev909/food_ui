@@ -7,9 +7,11 @@ class CustomSegmentedButton extends StatelessWidget {
     required this.pageController,
     required this.onFirstPressed,
     required this.onSecondPressed,
+    required this.valueNotifier,
   });
 
   final PageController pageController;
+  final ValueNotifier<bool> valueNotifier;
   final void Function() onFirstPressed;
   final void Function() onSecondPressed;
 
@@ -17,56 +19,61 @@ class CustomSegmentedButton extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       flex: 2,
-      child: Row(
-        children: [
-          Expanded(
-            child: GestureDetector(
-              onTap: onFirstPressed,
-              child: const SizedBox.expand(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: AppColor.activeDotColor,
-                    borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(16),
-                      bottomLeft: Radius.circular(16),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Food",
-                      style: TextStyle(fontSize: 16, color: AppColor.white),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ),
-          Expanded(
-            child: GestureDetector(
-              onTap: onSecondPressed,
-              child: const SizedBox.expand(
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    color: AppColor.bottoncolor_2,
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(16),
-                      bottomRight: Radius.circular(16),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      "Recipes",
-                      style: TextStyle(
-                        fontSize: 16,
-                        color: AppColor.activeDotColor,
+      child: ValueListenableBuilder(
+        valueListenable: valueNotifier,
+        builder: (context, value, child) {
+          return Row(
+            children: [
+              Expanded(
+                child: GestureDetector(
+                  onTap: onFirstPressed,
+                  child:  SizedBox.expand(
+                    child: DecoratedBox(
+                      decoration: BoxDecoration(
+                        color: value ? AppColor.bottoncolor_2 : AppColor.activeDotColor,
+                        borderRadius: const BorderRadius.only(
+                          topLeft: Radius.circular(16),
+                          bottomLeft: Radius.circular(16),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Food",
+                          style: TextStyle(fontSize: 16, color: value ? AppColor.activeDotColor : AppColor.white),
+                        ),
                       ),
                     ),
                   ),
                 ),
               ),
-            ),
-          ),
-        ],
+              Expanded(
+                child: GestureDetector(
+                  onTap: onSecondPressed,
+                  child: SizedBox.expand(
+                    child: DecoratedBox(
+                      decoration:  BoxDecoration(
+                        color: value ? AppColor.activeDotColor : AppColor.bottoncolor_2,
+                        borderRadius: const BorderRadius.only(
+                          topRight: Radius.circular(16),
+                          bottomRight: Radius.circular(16),
+                        ),
+                      ),
+                      child: Center(
+                        child: Text(
+                          "Recipes",
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: value ? AppColor.white : AppColor.activeDotColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
+        }
       ),
     );
   }
