@@ -19,7 +19,7 @@ class CameraPage extends StatefulWidget {
 class _CameraPageState extends State<CameraPage> {
   late CameraController cameraController;
   bool screenCamera = true;
-  int direction = 1;
+  int direction = 0;
   bool isClicked = true;
   late TorchController controller;
 
@@ -152,7 +152,7 @@ class _CameraPageState extends State<CameraPage> {
                       GestureDetector(
                         onTap: (){
                           setState(() {
-                            direction = direction == 1 ?  0 : 1;
+                            direction = direction == 0 ?  1 : 0;
                             startCamera(direction);
                           });
                         },
