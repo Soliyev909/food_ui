@@ -22,4 +22,9 @@ abstract class AppColor{
   static const bottoncolor_1 = Color(0xFFFF9385);
   static const bottoncolor_2 = Color(0xFFFFF8EE);
   static const foodColor = Color(0xFFFFF8EB);
+  static const bkgFruitOne = Color(0xFFFFF2F0);
+  static const vegetableText = Color(0xFF1C3418);
+  static const bkfFruitTwo = Color(0xFFEFF7EE);
+
+
 }

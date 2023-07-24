@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_ui/src/feature/food_app/models/food_model.dart';
 
 import '../../../common/constants/app_icons.dart';
+import '../models/food_model.dart';
 import '../widget/custom_bottom_camera.dart';
 import '../widget/custom_bottom_images.dart';
 import 'camera_page.dart';
