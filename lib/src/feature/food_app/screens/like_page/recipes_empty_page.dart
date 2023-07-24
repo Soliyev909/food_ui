@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/src/common/constants/app_pictures.dart';
 
-import '../../../../common/constants/app_icons.dart';
 import '../../widget/custom_button.dart';
 
 class RecipesEmptyPage extends StatelessWidget {

@@ -6,18 +6,19 @@ import '../models/recipes_model.dart';
 
 class RecipesCard extends StatefulWidget {
   final RecipesModel recipesModel;
+  final ValueNotifier<List<RecipesModel>> recipeList;
 
-  const RecipesCard({
-    required this.recipesModel,
-    super.key, required
-  });
+  const RecipesCard(
+      {required this.recipesModel,
+      super.key,
+      required,
+      required this.recipeList});
 
   @override
   State<RecipesCard> createState() => _RecipesCardState();
 }
 
 class _RecipesCardState extends State<RecipesCard> {
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -29,10 +30,12 @@ class _RecipesCardState extends State<RecipesCard> {
           children: [
             Expanded(
                 child: Center(
-                  child: Image(
-                    image: AssetImage(widget.recipesModel.image),
-                  ),
-                )),
+              child: Image(
+                image: AssetImage(widget.recipesModel.image),
+                height: 75,
+                width: 75,
+              ),
+            )),
             Expanded(
               flex: 2,
               child: Stack(
@@ -43,7 +46,12 @@ class _RecipesCardState extends State<RecipesCard> {
                       splashRadius: 15,
                       padding: const EdgeInsets.all(0),
                       onPressed: () {
+                        print(widget.recipeList.value);
                         widget.recipesModel.isFavourite.value = false;
+                        List<RecipesModel> temp = widget.recipeList.value;
+                        temp.remove(widget.recipesModel);
+                        widget.recipeList.value = temp;
+                        print(widget.recipeList.value);
                       },
                       icon: const Image(
                         image: AssetImage(AppIcons.isFevarite),

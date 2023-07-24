@@ -25,12 +25,7 @@ class _NotEmptyRecipasePage extends State<NotEmptyRecipasePage> {
         valueListenable: widget.recipes,
         builder: (context,value,child) {
           return Wrap(
-            children: List.generate(
-              widget.recipes.value.length,
-              (index) => RecipesCard(
-                recipesModel: widget.recipes.value[index],
-              ),
-            ),
+            children: value.map((e) => RecipesCard(recipesModel: e, recipeList: widget.recipes)).toList(),
           );
         }
       ),
