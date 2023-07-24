@@ -82,11 +82,11 @@ class _CustomLoginPageState extends State<CustomLoginPage> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             SizedBox(
-              height: widget.constraints.maxHeight * .05
+              height: widget.constraints.maxHeight * .07
             ),
             const LogoWidget(),
             SizedBox(
-              height: widget.constraints.maxHeight * .04,
+              height: widget.constraints.maxHeight * .01,
             ),
             Padding(
               padding: const EdgeInsets.only(left: 25, right: 25),

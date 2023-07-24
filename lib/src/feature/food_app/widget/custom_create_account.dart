@@ -95,7 +95,7 @@ class _CustomCreatePageState extends State<CustomCreatePage> {
         width: widget.constraints.maxWidth,
         child: Column(
           children: [
-            SizedBox(height: widget.constraints.maxHeight * .04),
+            SizedBox(height: widget.constraints.maxHeight * .07),
             const LogoWidget(),
             SizedBox(height: widget.constraints.maxHeight * .01),
             Padding(
