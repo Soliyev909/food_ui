@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/src/feature/food_app/models/food_model.dart';
+import 'package:food_ui/src/feature/food_app/models/product_model.dart';
+
+import '../models/recipes_model.dart';
 
 class OpenFood extends StatefulWidget {
-  final FoodModel food;
-  final ValueNotifier<List<FoodModel>> favourites;
+  final Product food;
+  final ValueNotifier<List<FoodModel>> favouritesFood;
+  final ValueNotifier<List<RecipesModel>> favouritesRecipe;
 
-  const OpenFood({super.key, required this.food, required this.favourites});
+  const OpenFood({
+    super.key,
+    required this.food,
+    required this.favouritesFood,
+    required this.favouritesRecipe,
+  });
 
   @override
   State<OpenFood> createState() => _OpenFoodState();
@@ -35,11 +44,24 @@ class _OpenFoodState extends State<OpenFood> {
               child: Center(
                 child: IconButton(
                   onPressed: () {
-                    if (widget.food.isFavourite.value) {
-                      widget.favourites.value.remove(widget.food);
+                    final bool currentFood = widget.food.isFavourite.value;
+                    final Product product = widget.food;
+
+                    if(currentFood) {
+                      if(product is FoodModel) {
+                        widget.favouritesFood.value.remove(product);
+                      } else if (product is RecipesModel) {
+                        widget.favouritesRecipe.value.remove(product);
+                      }
                     } else {
-                      widget.favourites.value.add(widget.food);
+                      if(product is FoodModel) {
+                        widget.favouritesFood.value.add(product);
+                      } else if (product is RecipesModel) {
+                        widget.favouritesRecipe.value.add(product);
+                      }
                     }
+
+
                     widget.food.isFavourite.value =
                         !widget.food.isFavourite.value;
                   },

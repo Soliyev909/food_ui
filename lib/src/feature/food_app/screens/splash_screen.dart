@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../common/constants/app_color.dart';
 import 'intro_page.dart';
 
@@ -11,11 +10,13 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+
+
   @override
   void initState() {
     super.initState();
     Future.delayed(const Duration(seconds: 1)).then(
-      (value) => Navigator.of(context).pushReplacement(
+          (value) => Navigator.of(context).pushReplacement(
         MaterialPageRoute(
           builder: (context) => const IntroPage(),
         ),

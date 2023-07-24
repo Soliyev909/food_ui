@@ -1,7 +1,7 @@
 import 'package:food_ui/src/common/constants/app_pictures.dart';
 import '../../feature/food_app/models/food_model.dart';
 
-class AppFoods {
+abstract class AppFoods {
   static  List<FoodModel> foods = [
     FoodModel(name: "Gamburger", image: AppPictures.imgBurger),
     FoodModel(name: "Cake", image: AppPictures.imgIceCream),

@@ -1,19 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:food_ui/src/common/constants/app_pictures.dart';
 import 'package:food_ui/src/feature/food_app/models/food_model.dart';
+import 'package:food_ui/src/feature/food_app/models/recipes_model.dart';
 import 'package:food_ui/src/feature/food_app/widget/open_food_widget.dart';
+
+import '../../models/product_model.dart';
 
 class SecondPage extends StatefulWidget {
   const SecondPage({
     super.key,
     required this.suggestions,
     required this.controller,
-    required this.favourites,
+    required this.favouritesFood,
+    required this.favouritesRecipe,
   });
 
   final TextEditingController controller;
-  final ValueNotifier<List<FoodModel>> suggestions;
-  final ValueNotifier<List<FoodModel>> favourites;
+  final ValueNotifier<List<Product>> suggestions;
+  final ValueNotifier<List<FoodModel>> favouritesFood;
+  final ValueNotifier<List<RecipesModel>> favouritesRecipe;
 
   @override
   State<SecondPage> createState() => _SecondPageState();
@@ -54,8 +59,12 @@ class _SecondPageState extends State<SecondPage> {
                           Navigator.push(
                             context,
                             MaterialPageRoute(
-                              builder: (context) =>
-                                  OpenFood(food: value[index],favourites: widget.favourites),
+                              builder: (context) => OpenFood(
+                                food: value[index],
+                                favouritesRecipe: widget.favouritesRecipe,
+                                favouritesFood: widget.favouritesFood,
+
+                              ),
                             ),
                           );
                         },

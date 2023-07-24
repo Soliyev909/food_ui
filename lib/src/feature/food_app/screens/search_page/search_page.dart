@@ -1,15 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:food_ui/src/common/constants/app_foods_items.dart';
+import 'package:food_ui/src/common/constants/app_all_products.dart';
 import 'package:food_ui/src/feature/food_app/models/food_model.dart';
+import 'package:food_ui/src/feature/food_app/models/recipes_model.dart';
 import 'package:food_ui/src/feature/food_app/screens/search_page/first_page.dart';
 import 'package:food_ui/src/feature/food_app/screens/search_page/second_page.dart';
 import 'package:food_ui/src/feature/food_app/widget/custom_text_field.dart';
 
 import '../../../../common/constants/app_color.dart';
+import '../../models/product_model.dart';
 
 class SearchPage extends StatefulWidget {
-  final ValueNotifier<List<FoodModel>> favourites;
-  const SearchPage({super.key, required this.favourites});
+  final ValueNotifier<List<FoodModel>> favouritesFood;
+  final ValueNotifier<List<RecipesModel>> favouritesRecipe;
+
+  const SearchPage({super.key, required this.favouritesFood, required this.favouritesRecipe});
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -18,11 +22,11 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   late TextEditingController _controller;
   ValueNotifier<bool> isTappedNotifier = ValueNotifier(false);
-  ValueNotifier<List<FoodModel>> suggestions = ValueNotifier(AppFoods.foods);
+  ValueNotifier<List<Product>> suggestions = ValueNotifier(AppAllProducts.products);
 
   void onChanged(String value) {
-    List<FoodModel> matchQuery = [];
-    for (FoodModel food in AppFoods.foods) {
+    List<Product> matchQuery = [];
+    for (Product food in AppAllProducts.products) {
       if (food.name.toLowerCase().startsWith(value.trim().toLowerCase())) {
         matchQuery.add(food);
       }
@@ -82,18 +86,14 @@ class _SearchPageState extends State<SearchPage> {
                     onTap: onTap,
                     onChanged: onChanged,
                   ),
-                  ValueListenableBuilder(
-                    valueListenable: isTappedNotifier,
-                    builder: (context, isTapped, child) {
-                      return isTapped
-                          ? SecondPage(
-                              favourites: widget.favourites,
-                              controller: _controller,
-                              suggestions: suggestions,
-                            )
-                          : const FirstPage();
-                    },
-                  )
+                  isTapped
+                      ? SecondPage(
+                          favouritesRecipe: widget.favouritesRecipe,
+                          favouritesFood: widget.favouritesFood,
+                          controller: _controller,
+                          suggestions: suggestions,
+                        )
+                      : const FirstPage(),
                 ],
               ),
             ),

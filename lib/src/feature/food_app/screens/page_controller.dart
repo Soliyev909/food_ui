@@ -60,7 +60,7 @@ class _CustomPageControllerState extends State<CustomPageController> {
         onPageChanged: pageChange,
         children: [
           const HomePage(),
-          SearchPage(favourites: favourites),
+          SearchPage(favouritesFood: favourites, favouritesRecipe: recipes),
           const CameraPage(),
           LikesPage(foodlikes: favourites,recipes: recipes),
           const ProfilePage(),
