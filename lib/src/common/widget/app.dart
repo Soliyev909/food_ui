@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       locale: DevicePreview.locale(context),
       builder: DevicePreview.appBuilder,
-      title: "Food UI",
+      title: "Kcal App",
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: "Signika",
