@@ -41,16 +41,16 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       backgroundColor: AppColor.white,
       body: Padding(
-        padding: const EdgeInsets.only(left: 25, right: 25, top: 50),
+        padding: const EdgeInsets.only(top: 20),
         child: ListView(
           children: [
             const Center(
               child: Text(
                 "Profile",
-                style: TextStyle(fontSize: 12, fontWeight: FontWeight.w500),
+                style: TextStyle(fontSize: 22, fontWeight: FontWeight.w500),
               ),
             ),
-            SizedBox(height: MediaQuery.of(context).size.height * .04),
+            SizedBox(height: MediaQuery.of(context).size.height * .02),
             Center(
               child: Stack(
                 alignment: Alignment.bottomRight,
@@ -112,15 +112,20 @@ class _ProfilePageState extends State<ProfilePage> {
                 ),
               ),
             ),
+
+            SizedBox(height: MediaQuery.of(context).size.height * .02),
             Column(
               children: List.generate(items.length, (index) {
                 if (index == 3) {
                   return Column(
                     children: [
-                      const Divider(
-                        color: Colors.black26,
-                        indent: 5,
-                        endIndent: 5,
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 20),
+                        child: const Divider(
+                          color: Colors.black26,
+                          indent: 3,
+                          endIndent: 3,
+                        ),
                       ),
                       items[index],
                     ],

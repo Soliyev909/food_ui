@@ -33,7 +33,6 @@ class _CustomListTileState extends State<CustomListTile> {
       padding: const EdgeInsets.all(5.0),
       child: ListTile(
         onTap: () {},
-        contentPadding: EdgeInsets.zero,
         title: Text(widget.title),
         leading: SizedBox(
           width: 48,
