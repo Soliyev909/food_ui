@@ -2,6 +2,7 @@
 
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:torch_controller/torch_controller.dart';
 
 import '../../../../main.dart';
 import '../../../common/constants/app_icons.dart';
@@ -18,16 +19,20 @@ class CameraPage extends StatefulWidget {
 class _CameraPageState extends State<CameraPage> {
   late CameraController cameraController;
   bool screenCamera = true;
+  int direction = 1;
+  bool isClicked = true;
+  late TorchController controller;
 
   @override
-  void initState() {
+  void initState(){
     super.initState();
-    startCamera();
+    controller = TorchController();
+    startCamera(0);
   }
 
-  void startCamera() async {
+  void startCamera(int direction) async {
     cameraController = CameraController(
-      cameras[0],
+      cameras[direction],
       ResolutionPreset.high,
       enableAudio: false,
     );
@@ -70,7 +75,10 @@ class _CameraPageState extends State<CameraPage> {
                     ),
                   ),
                   IconButton(
-                    onPressed: () {},
+                    onPressed:() {
+                          controller.toggle();
+                          setState(() {});
+                        },
                     icon: const Image(
                       image: AssetImage(AppIcons.icLightning),
                       height: 25,
@@ -141,12 +149,20 @@ class _CameraPageState extends State<CameraPage> {
                           ),
                         ),
                       ),
-                      const SizedBox(
-                        width: 40,
-                        height: 40,
-                        child: Image(
-                          image: AssetImage(AppIcons.icRefresh),
-                          fit: BoxFit.fill,
+                      GestureDetector(
+                        onTap: (){
+                          setState(() {
+                            direction = direction == 1 ?  0 : 1;
+                            startCamera(direction);
+                          });
+                        },
+                        child: const SizedBox(
+                          width: 40,
+                          height: 40,
+                          child: Image(
+                            image: AssetImage(AppIcons.icRefresh),
+                            fit: BoxFit.fill,
+                          ),
                         ),
                       ),
                     ],

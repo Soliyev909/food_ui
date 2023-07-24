@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:food_ui/src/common/constants/app_pictures.dart';
 
 import '../../../common/constants/app_color.dart';
+import '../../../common/constants/app_pictures.dart';
 import 'custom_button.dart';
 import 'custom_richtext.dart';
 import 'info_text.dart';
@@ -28,21 +28,26 @@ class _CameraDialogState extends State<CameraDialog> {
   ];
 
   List<Ingredients> ingredients = [
-    const Ingredients(images: AppPictures.imgBread,),
+    const Ingredients(
+      images: AppPictures.imgBread,
+    ),
     const Ingredients(images: AppPictures.imgTomato),
     const Ingredients(images: AppPictures.imgSalad),
     const Ingredients(images: AppPictures.view),
   ];
 
-
-
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 700,
-      child: ColoredBox(
-        color: Colors.white,
+      child: DecoratedBox(
+        decoration: const BoxDecoration(
+          color: AppColor.white,
+          borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(32),
+            topRight: Radius.circular(32),
+          ),
+        ),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -67,7 +72,7 @@ class _CameraDialogState extends State<CameraDialog> {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: List.generate(
                     infoTexts.length,
-                        (index) => infoTexts[index],
+                    (index) => infoTexts[index],
                   ),
                 ),
               ),
@@ -83,10 +88,14 @@ class _CameraDialogState extends State<CameraDialog> {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20,),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 20,
+              ),
               child: CustomRichText(
-                mainText: "A hamburger (also burger for short) is a sandwich consisting of one or more cooked patties of ground meat, usually beef, placed inside a sliced bread  ",
-                text: "Read More...", onTap: () {  },
+                mainText:
+                    "A hamburger (also burger for short) is a sandwich consisting of one or more cooked patties of ground meat, usually beef, placed inside a sliced bread  ",
+                text: "Read More...",
+                onTap: () {},
               ),
             ),
             const Padding(
@@ -101,7 +110,8 @@ class _CameraDialogState extends State<CameraDialog> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: List.generate(ingredients.length, (index) => ingredients[index]),
+              children: List.generate(
+                  ingredients.length, (index) => ingredients[index]),
             ),
             const SizedBox(height: 10),
             Center(
