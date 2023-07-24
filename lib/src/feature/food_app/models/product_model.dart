@@ -17,10 +17,11 @@ class Product {
           runtimeType == other.runtimeType &&
           name == other.name &&
           image == other.image &&
-          isFavourite == other.isFavourite);
+          isFavourite.value == other.isFavourite.value);
 
   @override
-  int get hashCode => name.hashCode ^ image.hashCode ^ isFavourite.hashCode;
+  int get hashCode =>
+      name.hashCode ^ image.hashCode ^ isFavourite.value.hashCode;
 
   @override
   String toString() {

@@ -116,7 +116,7 @@ class _CameraPageState extends State<CameraPage> {
                         width: 40,
                         height: 40,
                         child: Image(
-                          image: AssetImage(AppIcons.ic_frame),
+                          image: AssetImage(AppIcons.icFrame),
                           fit: BoxFit.fill,
                         ),
                       ),

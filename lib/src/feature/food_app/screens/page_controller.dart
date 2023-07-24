@@ -54,12 +54,12 @@ class _CustomPageControllerState extends State<CustomPageController> {
         physics: const NeverScrollableScrollPhysics(),
         controller: controller,
         onPageChanged: pageChange,
-        children: [
-          const HomePage(),
+        children: const [
+          HomePage(),
           SearchPage(),
-          const CameraPage(),
+          CameraPage(),
           LikesPage(),
-          const ProfilePage(),
+          ProfilePage(),
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(

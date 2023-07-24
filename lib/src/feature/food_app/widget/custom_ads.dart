@@ -35,10 +35,10 @@ class CustomAds extends StatelessWidget {
                         color: AppColor.activeDotColor,
                       ),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       width: 125,
                       height: 48,
-                      child: const Text(
+                      child: Text(
                         "The pros and cons of fast food.",
                         style: TextStyle(
                           fontSize: 17,
@@ -49,7 +49,7 @@ class CustomAds extends StatelessWidget {
                     ),
                     FilledButton(
                       style: FilledButton.styleFrom(
-                        padding: EdgeInsets.all(0),
+                        padding: const EdgeInsets.all(0),
                         fixedSize: const Size(104, 32),
                         backgroundColor: AppColor.activeDotColor,
                         shape: const RoundedRectangleBorder(

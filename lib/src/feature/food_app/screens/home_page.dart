@@ -87,13 +87,13 @@ class _HomePageState extends State<HomePage> {
                     width: 320,
                     height: 88,
                     child: DecoratedBox(
-                      decoration: BoxDecoration(
+                      decoration: const BoxDecoration(
                         color: AppColor.stackColor,
                         borderRadius: BorderRadius.all(Radius.circular(24)),
                       ),
                       child: Stack(
                         children: [
-                          Image(
+                          const Image(
                             image: AssetImage(AppPictures.imgSubtract),
                             width: 232,
                             height: 88,
@@ -114,7 +114,7 @@ class _HomePageState extends State<HomePage> {
                               ),
                               FilledButton(
                                 style: FilledButton.styleFrom(
-                                  padding: EdgeInsets.all(0),
+                                  padding: const EdgeInsets.all(0),
                                   fixedSize: const Size(104, 32),
                                   backgroundColor: AppColor.white,
                                   shape: const RoundedRectangleBorder(

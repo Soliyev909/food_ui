@@ -23,7 +23,7 @@ class CustomFavorites extends StatelessWidget {
         child: DecoratedBox(
           decoration: BoxDecoration(
             color: bkgColor,
-            borderRadius: BorderRadius.all(Radius.circular(32)),
+            borderRadius: const BorderRadius.all(Radius.circular(32)),
           ),
           child: Center(
             child: Padding(

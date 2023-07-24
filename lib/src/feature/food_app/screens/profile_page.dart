@@ -119,9 +119,9 @@ class _ProfilePageState extends State<ProfilePage> {
                 if (index == 3) {
                   return Column(
                     children: [
-                      Padding(
+                      const Padding(
                         padding: EdgeInsets.symmetric(horizontal: 20),
-                        child: const Divider(
+                        child: Divider(
                           color: Colors.black26,
                           indent: 3,
                           endIndent: 3,

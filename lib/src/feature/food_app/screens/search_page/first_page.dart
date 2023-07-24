@@ -67,7 +67,7 @@ class _FirstPageState extends State<FirstPage> {
               ),
             ),
           ),
-          SizedBox(height: 24),
+          const SizedBox(height: 24),
           buildTitleText("Trending"),
           Expanded(
             flex: 1,
@@ -97,7 +97,6 @@ class _FirstPageState extends State<FirstPage> {
       children: [
         GestureDetector(
           onTap: () async {
-            print("asas");
             const url = "https://youtu.be/dQw4w9WgXcQ";
             if(await canLaunchUrlString(url)) {
               await launchUrlString(url);
