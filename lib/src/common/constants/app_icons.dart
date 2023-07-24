@@ -24,4 +24,5 @@ abstract class AppIcons{
   static const center = "assets/images/icons/center.png";
   static const ic_arrow_right = "assets/images/icons/ic_arrow_right.png";
   static const ic_frame = "assets/images/icons/ic_frame.png";
+  static const isFevarite = "assets/images/icons/Heart.png";
 }
